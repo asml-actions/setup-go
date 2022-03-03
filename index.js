@@ -1,12 +1,16 @@
 const core = require("@actions/core");
 const exec = require("@actions/exec");
 
-const token = "X-JFrog-Art-Api:"+process.env.ARTIFACTORY_TOKEN 
+const token = "X-JFrog-Art-Api:" + process.env.ARTIFACTORY_TOKEN;
 
 const main = async () => {
   try {
-
-    await exec.exec('curl', ["-H",token,"-O","https://artifactory-de.asml.com/artifactory/rise-generic-dev-local/toolchain-cache/go_tool_cache.tar.gz"]);
+    await exec.exec("curl", [
+      "-H",
+      token,
+      "-O",
+      "https://artifactory-de.asml.com/artifactory/rise-generic-dev-local/toolchain-cache/go_tool_cache.tar.gz",
+    ]);
 
     await exec.exec("tar", ["-zxf", "go_tool_cache.tar.gz"]);
     await exec.exec("cp", ["-r", "go", "/opt/hostedtoolcache"]);
@@ -14,10 +18,13 @@ const main = async () => {
     core.setFailed(error.message);
   }
   try {
-    let version = core.getInput('go-version');
+    let version = core.getInput("go-version");
     await exec.exec("echo", [version]);
 
-    switch (version.slice(0,4)) {
+    switch (version.slice(0, 4)) {
+      case "1.14":
+        core.addPath("/opt/hostedtoolcache/go/1.14.15/x64/bin");
+        break;
       case "1.15":
         core.addPath("/opt/hostedtoolcache/go/1.15.15/x64/bin");
         break;
@@ -25,10 +32,12 @@ const main = async () => {
         core.addPath("/opt/hostedtoolcache/go/1.16.14/x64/bin");
         break;
       case "1.17":
-        core.addPath("/opt/hostedtoolcache/go/1.17.7/x64/bin")
+        core.addPath("/opt/hostedtoolcache/go/1.17.7/x64/bin");
         break;
       default:
-        core.setFailed("go-version needs to be specified !! (SUPPORTED VERSIONS:1.15.x, 1.16.x, 1.17.x)");
+        core.setFailed(
+          "go-version needs to be specified !! (SUPPORTED VERSIONS:1.15.x, 1.16.x, 1.17.x)"
+        );
         break;
     }
   } catch (error) {
