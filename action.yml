@@ -1,0 +1,5 @@
+name: "ASML-Setup Go"
+description: "Setup Go using Artifactory"
+runs:
+  using: "node12"
+  main: "index.js"
