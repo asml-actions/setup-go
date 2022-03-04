@@ -18,7 +18,7 @@ Matrix Testing:
 ```yaml
 jobs:
   build:
-    runs-on: ubuntu-16.04
+    runs-on: asml-gh-org
     strategy:
       matrix:
         go: [ '1.14.x', '1.15.x', '1.16.x', '1.17.x' ]
