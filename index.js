@@ -2,6 +2,7 @@ const core = require("@actions/core");
 const exec = require("@actions/exec");
 
 const token = "X-JFrog-Art-Api:" + process.env.ARTIFACTORY_TOKEN;
+const toolsPath = process.env.RUNNER_TOOL_CACHE;
 
 const main = async () => {
   try {
@@ -13,7 +14,7 @@ const main = async () => {
     ]);
 
     await exec.exec("tar", ["-zxf", "go_tool_cache.tar.gz"]);
-    await exec.exec("cp", ["-r", "go", "/opt/hostedtoolcache"]);
+    await exec.exec("cp", ["-r", "go", toolsPath]);
   } catch (error) {
     core.setFailed(error.message);
   }
@@ -23,16 +24,16 @@ const main = async () => {
 
     switch (version.slice(0, 4)) {
       case "1.14":
-        core.addPath("/opt/hostedtoolcache/go/1.14.15/x64/bin");
+        core.addPath(toolsPath+"/go/1.14.15/x64/bin");
         break;
       case "1.15":
-        core.addPath("/opt/hostedtoolcache/go/1.15.15/x64/bin");
+        core.addPath(toolsPath+"/go/1.15.15/x64/bin");
         break;
       case "1.16":
-        core.addPath("/opt/hostedtoolcache/go/1.16.14/x64/bin");
+        core.addPath(toolsPath+"/go/1.16.14/x64/bin");
         break;
       case "1.17":
-        core.addPath("/opt/hostedtoolcache/go/1.17.7/x64/bin");
+        core.addPath(toolsPath+"/go/1.17.7/x64/bin");
         break;
       default:
         core.setFailed(
