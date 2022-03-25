@@ -1,17 +1,19 @@
 # ASML Setup Go
-
 A GitHub Action to setup your workflow to use a specific version of Go fetched from [Artifactory](https://artifactory-de.asml.com/ui/repos/tree/General/rise-generic-dev-local/toolchain-cache).
-# Usage
 
+# Usage
 See [action.yml](action.yml)
+You need to use the global Artifactory token to be able to download the binaries from Artifactory. If you do not have it, contact the RISE team.
 
 Basic:
 ```yaml
-steps:
-- uses: actions/asml-setup-go@main
-  with:
-    go-version: '1.14.x' # The Go version to download (if necessary) and use.
-- run: go run hello.go
+    steps:
+    - uses: actions/asml-setup-go@main
+      with:
+        go-version: '1.14.x' # The Go version to download (if necessary) and use.
+      env:
+        ARTIFACTORY_TOKEN: ${{secrets.ARTIFACTORY_TOKEN}}
+    - run: go run hello.go
 ```
 
 Matrix Testing:
@@ -28,5 +30,7 @@ jobs:
         uses: actions/asml-setup-setup-go@main
         with:
           go-version: ${{ matrix.go }}
+        env:
+          ARTIFACTORY_TOKEN: ${{secrets.ARTIFACTORY_TOKEN}}
       - run: go run hello.go
 ```
