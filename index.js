@@ -1,7 +1,7 @@
 const core = require("@actions/core");
 const exec = require("@actions/exec");
 
-const token = "Authorization: Bearer" + process.env.ARTIFACTORY_TOKEN;
+const token = "Authorization: Bearer " + process.env.ARTIFACTORY_TOKEN;
 const toolsPath = process.env.RUNNER_TOOL_CACHE;
 
 const main = async () => {
