@@ -2970,7 +2970,7 @@ var __webpack_exports__ = {};
 const core = __nccwpck_require__(186);
 const exec = __nccwpck_require__(514);
 
-const token = "X-JFrog-Art-Api:" + process.env.ARTIFACTORY_TOKEN;
+const token = "Authorization: Bearer" + process.env.ARTIFACTORY_TOKEN;
 const toolsPath = process.env.RUNNER_TOOL_CACHE;
 
 const main = async () => {
