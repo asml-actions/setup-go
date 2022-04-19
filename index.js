@@ -7,6 +7,7 @@ const toolsPath = process.env.RUNNER_TOOL_CACHE;
 const main = async () => {
   try {
     await exec.exec("curl", [
+      "-f",
       "-H",
       token,
       "-O",
