@@ -3002,7 +3002,7 @@ const main = async () => {
         core.addPath(toolsPath+"/go/1.16.15/x64/bin");
         break;
       case "1.17":
-        core.addPath(toolsPath+"/go/1.17.8/x64/bin");
+        core.addPath(toolsPath+"/go/1.17.9/x64/bin");
         break;
       default:
         core.setFailed(
