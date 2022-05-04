@@ -1,0 +1,24 @@
+{
+  "name": "asml-setup-go",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "ncc build index.js -o dist"
+  },
+  "keywords": [
+    "go",
+    "setup-go"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git@gh.asml.com:actions/asml-setup-go.git"
+  },
+  "author": "TEAM-RISE",
+  "license": "GPL3",
+  "dependencies": {
+    "@actions/core": "^1.6.0",
+    "@actions/exec": "^1.1.0",
+    "@vercel/ncc": "^0.33.3"
+  }
+}
