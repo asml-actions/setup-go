@@ -8,7 +8,7 @@ You need to use the global Artifactory token to be able to download the binaries
 Basic:
 ```yaml
     steps:
-    - uses: actions/asml-setup-go@main
+    - uses: actions/setup-go@main
       with:
         go-version: '1.14.x' # The Go version to download (if necessary) and use.
       env:
@@ -27,7 +27,7 @@ jobs:
     name: Go ${{ matrix.go }} sample
     steps:
       - name: Setup go
-        uses: actions/asml-setup-setup-go@main
+        uses: actions/setup-go@main
         with:
           go-version: ${{ matrix.go }}
         env:
