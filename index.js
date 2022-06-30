@@ -25,6 +25,10 @@ const main = async () => {
     await exec.exec("curl", ["-f", "-s", "-H", token, "-O", artifactoryURL]);
     await exec.exec("tar", ["-zxf", "go_tool_cache.tar.gz"]);
     await exec.exec("cp", ["-r", "go", toolsPath]);
+
+    // and cleanup
+    await exec.exec("rm ", ["-rf", "go"]);
+    await exec.exec("rm ", ["go_tool_cache.tar.gz"]);    
   } catch (error) {
     core.setFailed(error.message);
   }
