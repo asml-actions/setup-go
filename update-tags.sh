@@ -8,3 +8,10 @@ for TAG in ${TAGS[@]}; do
     git tag $TAG
     git push --tags
 done
+
+for TAG in ${TAGS[@]}; do
+    git tag -d $TAG
+    git push --delete acc $TAG
+    git tag $TAG
+    git push --tags -u acc
+done
