@@ -24,6 +24,9 @@ const main = async () => {
   try {
     await exec.exec("curl", ["-f", "-s", "-H", token, "-O", artifactoryURL]);
     await exec.exec("tar", ["-zxf", "go_tool_cache.tar.gz"]);
+
+    // Clean up target location first to prevent issues on vm runners
+    await exec.exec("rm", ["-rf", toolsPath+"/go/"]);
     await exec.exec("cp", ["-r", "go", toolsPath]);
 
     // and cleanup
