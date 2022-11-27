@@ -8,21 +8,16 @@ function getDirectories(path) {
   });
 }
 
-const token = "Authorization: Bearer " + process.env.ARTIFACTORY_TOKEN;
 const toolsPath = process.env.RUNNER_TOOL_CACHE;
-const artifactoryURL =
-  "https://artifactory-de.asml.com/artifactory/rise-generic-dev-local/toolchain-cache/go_tool_cache.tar.gz";
+const artifactURL =
+  "nginx-setup-tools.github-action-tools/go_tool_cache.tar.gz";
 const version = core.getInput("go-version");
 
-if (!process.env.ARTIFACTORY_TOKEN) {
-  core.setFailed(
-    `Environment variable 'ARTIFACTORY_TOKEN' not found, please provide a token that can download from ${artifactoryURL}`
-  );
-}
+
 
 const main = async () => {
   try {
-    await exec.exec("curl", ["-f", "-s", "-H", token, "-O", artifactoryURL]);
+    await exec.exec("curl", ["-f", "-s", "-O", artifactURL]);
     await exec.exec("tar", ["-zxf", "go_tool_cache.tar.gz"]);
 
     // Clean up target location first to prevent issues on vm runners
