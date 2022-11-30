@@ -12,7 +12,7 @@ Basic:
       with:
         go-version: '1.14.x' # The Go version to download (if necessary) and use.
       env:
-        ARTIFACTORY_TOKEN: ${{secrets.ARTIFACTORY_TOKEN}}
+        ARTIFACTORY_TOKEN: ${{secrets.ARTIFACTORY_DE_TOKEN_TOOLCHAIN}}
     - run: go run hello.go
 ```
 

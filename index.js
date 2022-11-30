@@ -9,24 +9,27 @@ function getDirectories(path) {
 }
 
 const toolsPath = process.env.RUNNER_TOOL_CACHE;
-const artifactURL =
-  "nginx-setup-tools.github-action-tools/go_tool_cache.tar.gz";
+const artifactURL = "nginx-setup-tools.github-action-tools/go_tool_cache.tar.gz";
+const artifactoryURL = "https://artifactory-de.asml.com/artifactory/rise-generic-dev-local/toolchain-cache/go_tool_cache.tar.gz";  
 const version = core.getInput("go-version");
-
-
 
 const main = async () => {
   try {
+    if (process.env.ARTIFACTORY_DE_TOKEN_TOOLCHAIN) {
+      await exec.exec("curl", ["-f", "-s", "-H", token, "-O", artifactoryURL]);
+    } else {
+      await exec.exec("curl", ["-f", "-s", "-O", artifactURL]);
+    }
     await exec.exec("curl", ["-f", "-s", "-O", artifactURL]);
     await exec.exec("tar", ["-zxf", "go_tool_cache.tar.gz"]);
 
     // Clean up target location first to prevent issues on vm runners
-    await exec.exec("rm", ["-rf", toolsPath+"/go/"]);
+    await exec.exec("rm", ["-rf", toolsPath + "/go/"]);
     await exec.exec("cp", ["-r", "go", toolsPath]);
 
     // and cleanup
     await exec.exec("rm ", ["-rf", "go"]);
-    await exec.exec("rm ", ["go_tool_cache.tar.gz"]);    
+    await exec.exec("rm ", ["go_tool_cache.tar.gz"]);
   } catch (error) {
     core.setFailed(error.message);
   }
