@@ -3,7 +3,8 @@ A GitHub Action to setup your workflow to use a specific version of Go fetched f
 
 # Usage
 See [action.yml](action.yml)
-You need to use the global Artifactory token to be able to download the binaries from Artifactory. If you do not have it, contact the RISE team.
+This action needs an artifactory token to be used with runners that are not deployed on k8s to download tools from Artifactory. For the k8s runners there is no need to provide token.
+If you do not have the token, contact the RISE team. 
 
 Basic:
 ```yaml
