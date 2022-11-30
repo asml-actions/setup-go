@@ -2986,7 +2986,7 @@ const version = core.getInput("go-version");
 
 const main = async () => {
   try {
-    if (!process.env.ARTIFACTORY_DE_TOKEN_TOOLCHAIN) {
+    if (!process.env.ARTIFACTORY_TOKEN) {
       await exec.exec("curl", ["-f", "-s", "-O", artifactURL]);
     } else {
       const token = "Authorization: Bearer " + process.env.ARTIFACTORY_TOKEN;
