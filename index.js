@@ -15,10 +15,11 @@ const version = core.getInput("go-version");
 
 const main = async () => {
   try {
-    if (process.env.ARTIFACTORY_DE_TOKEN_TOOLCHAIN) {
-      await exec.exec("curl", ["-f", "-s", "-H", token, "-O", artifactoryURL]);
-    } else {
+    if (!process.env.ARTIFACTORY_DE_TOKEN_TOOLCHAIN) {
+      
       await exec.exec("curl", ["-f", "-s", "-O", artifactURL]);
+    } else {
+      await exec.exec("curl", ["-f", "-s", "-H", token, "-O", artifactoryURL]);
     }
     await exec.exec("curl", ["-f", "-s", "-O", artifactURL]);
     await exec.exec("tar", ["-zxf", "go_tool_cache.tar.gz"]);
