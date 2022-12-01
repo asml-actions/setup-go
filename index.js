@@ -9,10 +9,8 @@ function getDirectories(path) {
 }
 
 const toolsPath = process.env.RUNNER_TOOL_CACHE;
-const artifactURL =
-  "nginx-setup-tools.github-action-tools/go_tool_cache.tar.gz";
-const artifactoryURL =
-  "https://artifactory-de.asml.com/artifactory/rise-generic-dev-local/toolchain-cache/go_tool_cache.tar.gz";
+const artifactURL = "nginx-setup-tools.github-action-tools/go_tool_cache.tar.gz";
+const artifactoryURL = "https://artifactory-de.asml.com/artifactory/rise-generic-dev-local/toolchain-cache/go_tool_cache.tar.gz";
 const version = core.getInput("go-version");
 
 const main = async () => {
