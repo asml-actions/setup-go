@@ -3,7 +3,7 @@ A GitHub Action to setup your workflow to use a specific version of Go fetched f
 
 # Usage
 See [action.yml](action.yml)
-This action needs an artifactory token to be used with runners that are not deployed on k8s to download tools from Artifactory. For the k8s runners there is no need to provide token.
+This action needs an Artifactory token to be used with runners that are not deployed on k8s to download tools from Artifactory. For the k8s runners there is no need to provide token.
 If you do not have the token, contact the RISE team. 
 
 Basic:
