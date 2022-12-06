@@ -13,7 +13,7 @@ Basic:
       with:
         go-version: '1.14.x' # The Go version to download (if necessary) and use.
       env:
-        ARTIFACTORY_TOKEN: ${{secrets.ARTIFACTORY_DE_TOKEN_TOOLCHAIN}}
+        ARTIFACTORY_TOKEN: ${{secrets.SETUP_ACTION_ARTIFACTORY_DE_TOKEN}}
     - run: go run hello.go
 ```
 
@@ -32,6 +32,6 @@ jobs:
         with:
           go-version: ${{ matrix.go }}
         env:
-          ARTIFACTORY_TOKEN: ${{secrets.ARTIFACTORY_TOKEN}}
+          ARTIFACTORY_TOKEN: ${{secrets.SETUP_ACTION_ARTIFACTORY_DE_TOKEN}}
       - run: go run hello.go
 ```
