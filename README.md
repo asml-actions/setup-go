@@ -11,7 +11,7 @@ Basic:
     steps:
     - uses: actions/setup-go@main
       with:
-        go-version: '1.14.x' # The Go version to download (if necessary) and use.
+        go-version: '1.20.x' # The Go version to download (if necessary) and use.
       env:
         ARTIFACTORY_TOKEN: ${{secrets.SETUP_ACTION_ARTIFACTORY_DE_TOKEN}}
     - run: go run hello.go
@@ -24,7 +24,7 @@ jobs:
     runs-on: asml-gh-org
     strategy:
       matrix:
-        go: [ '1.14.x', '1.15.x', '1.16.x', '1.17.x' ]
+        go: [ '1.14.x', '1.15.x', '1.16.x', '1.17.x','1.20.x' ]
     name: Go ${{ matrix.go }} sample
     steps:
       - name: Setup go
