@@ -59,7 +59,7 @@ const main = async () => {
     return;
   } else {
     core.setFailed(
-      "go-version needs to be specified !! (SUPPORTED VERSIONS:1.14.x, 1.15.x, 1.16.x, 1.17.x, 1.18.x,1.20.x"
+      "go-version needs to be specified !! (SUPPORTED VERSIONS:1.14.x, 1.15.x, 1.16.x, 1.17.x, 1.18.x,1.20.x, '1.21.x','1.22.x','1.23.x','1.24.x"
     );
     return 1;
   }
